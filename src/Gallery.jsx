@@ -138,10 +138,10 @@ export default function Gallery() {
             <p className="note-text">{DARES[openIdx]}</p>
             <div className="note-actions">
               <button className="btn btn-popup" onClick={closeDare}>
-                Okay 💪
+                Sure, my sweet doll
               </button>
               <RunawayButton key={openIdx} className="btn btn-ghost runaway" onClick={closeDare}>
-                Pass 🙈
+                NOOO
               </RunawayButton>
             </div>
           </div>
