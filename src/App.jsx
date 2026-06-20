@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from 'react'
 import musicUrl from './music.mp3'
 import Gallery from './Gallery.jsx'
+import RunawayButton from './RunawayButton.jsx'
 
 const MUSIC_START = 168 // start at 2:48
 
@@ -120,9 +121,9 @@ export default function App() {
               <button className="btn btn-popup" onClick={handleMusicYes}>
                 Yes!!! Of course
               </button>
-              <button className="btn btn-ghost" onClick={handleMusicNo}>
+              <RunawayButton className="btn btn-ghost runaway" onClick={handleMusicNo}>
                 No, I am a bore
-              </button>
+              </RunawayButton>
             </div>
           </div>
         </div>

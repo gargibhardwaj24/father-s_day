@@ -236,7 +236,7 @@ h1 {
 .popup-actions .btn { margin-top: 0; }
 
 .btn-ghost {
-  background: transparent;
+  background: white;
   color: var(--brown-red);
   border: 2px solid rgba(173, 40, 49, 0.45);
   box-shadow: none;
@@ -601,6 +601,13 @@ h1 {
 }
 
 .note-actions .btn { margin-top: 0; }
+
+.runaway {
+  position: relative;
+  z-index: 6;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
 
 @keyframes crumpleIn {
   0% { opacity: 0; transform: rotate(-1.8deg) scale(0.4); }

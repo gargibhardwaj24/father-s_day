@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useSpring, animated, to } from '@react-spring/web'
+import RunawayButton from './RunawayButton.jsx'
 import card1 from './assets/card1.png'
 import card2 from './assets/card2.png'
 import card3 from './assets/card3.png'
@@ -76,16 +77,20 @@ function HangingCard({ src, w, h, drop, dur, delay, amp }) {
 const DARES = [
   "Pay Gargi's savana bill",
   "Give Gargi 2000rs right now!!!",
-  "Say I love you Gargi",
+  "Say I love you to Gargi",
   "Take Nishu and Gargi out on lunch",
   "Pay Gargi's savana bill PLEASEEEE🙏🙏🙏🙏",
 ]
 
 export default function Gallery() {
   const [openIdx, setOpenIdx] = useState(null)
+  const [next, setNext] = useState(0)
 
-  const openDare = (i) => setOpenIdx(i)
-  const pickRandom = () => setOpenIdx(Math.floor(Math.random() * DARES.length))
+  // any note / the bowl reveals dares in order: 1 -> 2 -> 3 -> 4 -> 5 -> 1 ...
+  const pickDare = () => {
+    setOpenIdx(next)
+    setNext((n) => (n + 1) % DARES.length)
+  }
   const closeDare = () => setOpenIdx(null)
 
   return (
@@ -103,10 +108,10 @@ export default function Gallery() {
         <p>Pick a dare!!!</p>
         <div
           className="bowl-wrap"
-          onClick={pickRandom}
+          onClick={pickDare}
           role="button"
           tabIndex={0}
-          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && pickRandom()}
+          onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && pickDare()}
           title="Pick a dare"
         >
           <div className="bowl-rim" />
@@ -115,10 +120,9 @@ export default function Gallery() {
               <span
                 key={i}
                 className={`note n${i + 1}`}
-                title={`Dare #${i + 1}`}
                 onClick={(e) => {
                   e.stopPropagation()
-                  openDare(i)
+                  pickDare()
                 }}
               />
             ))}
@@ -136,9 +140,9 @@ export default function Gallery() {
               <button className="btn btn-popup" onClick={closeDare}>
                 Okay 💪
               </button>
-              <button className="btn btn-ghost" onClick={closeDare}>
+              <RunawayButton key={openIdx} className="btn btn-ghost runaway" onClick={closeDare}>
                 Pass 🙈
-              </button>
+              </RunawayButton>
             </div>
           </div>
         </div>
